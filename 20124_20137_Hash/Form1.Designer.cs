@@ -29,27 +29,75 @@ namespace _20124_20137_Hash
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgvPessoa = new System.Windows.Forms.DataGridView();
-            this.posicao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.chave = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btn1 = new System.Windows.Forms.Button();
+            this.dgvAluno = new System.Windows.Forms.DataGridView();
             this.btnAdd = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPessoa)).BeginInit();
+            this.txtRa = new System.Windows.Forms.TextBox();
+            this.txtNome = new System.Windows.Forms.TextBox();
+            this.lblRa = new System.Windows.Forms.Label();
+            this.lblNome = new System.Windows.Forms.Label();
+            this.posicao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAluno)).BeginInit();
             this.SuspendLayout();
             // 
-            // dgvPessoa
+            // dgvAluno
             // 
-            this.dgvPessoa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPessoa.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvAluno.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAluno.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.posicao,
-            this.chave,
+            this.ra,
             this.nome});
-            this.dgvPessoa.Location = new System.Drawing.Point(12, 157);
-            this.dgvPessoa.Name = "dgvPessoa";
-            this.dgvPessoa.RowTemplate.Height = 25;
-            this.dgvPessoa.Size = new System.Drawing.Size(807, 317);
-            this.dgvPessoa.TabIndex = 0;
+            this.dgvAluno.Location = new System.Drawing.Point(12, 157);
+            this.dgvAluno.Name = "dgvAluno";
+            this.dgvAluno.RowTemplate.Height = 25;
+            this.dgvAluno.Size = new System.Drawing.Size(807, 317);
+            this.dgvAluno.TabIndex = 0;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Location = new System.Drawing.Point(494, 36);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(91, 29);
+            this.btnAdd.TabIndex = 2;
+            this.btnAdd.Text = "Adicionar";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // txtRa
+            // 
+            this.txtRa.Location = new System.Drawing.Point(25, 36);
+            this.txtRa.MaxLength = 5;
+            this.txtRa.Multiline = true;
+            this.txtRa.Name = "txtRa";
+            this.txtRa.Size = new System.Drawing.Size(95, 29);
+            this.txtRa.TabIndex = 3;
+            // 
+            // txtNome
+            // 
+            this.txtNome.Location = new System.Drawing.Point(136, 36);
+            this.txtNome.Multiline = true;
+            this.txtNome.Name = "txtNome";
+            this.txtNome.Size = new System.Drawing.Size(341, 29);
+            this.txtNome.TabIndex = 4;
+            // 
+            // lblRa
+            // 
+            this.lblRa.AutoSize = true;
+            this.lblRa.Location = new System.Drawing.Point(25, 13);
+            this.lblRa.Name = "lblRa";
+            this.lblRa.Size = new System.Drawing.Size(25, 15);
+            this.lblRa.TabIndex = 5;
+            this.lblRa.Text = "RA:";
+            // 
+            // lblNome
+            // 
+            this.lblNome.AutoSize = true;
+            this.lblNome.Location = new System.Drawing.Point(136, 13);
+            this.lblNome.Name = "lblNome";
+            this.lblNome.Size = new System.Drawing.Size(43, 15);
+            this.lblNome.TabIndex = 6;
+            this.lblNome.Text = "Nome:";
             // 
             // posicao
             // 
@@ -57,61 +105,50 @@ namespace _20124_20137_Hash
             this.posicao.Name = "posicao";
             this.posicao.ReadOnly = true;
             // 
-            // chave
+            // ra
             // 
-            this.chave.HeaderText = "Chave";
-            this.chave.Name = "chave";
-            this.chave.ReadOnly = true;
+            this.ra.HeaderText = "RA";
+            this.ra.MaxInputLength = 5;
+            this.ra.Name = "ra";
+            this.ra.ReadOnly = true;
             // 
             // nome
             // 
             this.nome.HeaderText = "Nome";
             this.nome.Name = "nome";
             this.nome.ReadOnly = true;
-            // 
-            // btn1
-            // 
-            this.btn1.Location = new System.Drawing.Point(12, 115);
-            this.btn1.Name = "btn1";
-            this.btn1.Size = new System.Drawing.Size(75, 23);
-            this.btn1.TabIndex = 1;
-            this.btn1.Text = "Atualizar";
-            this.btn1.UseVisualStyleBackColor = true;
-            this.btn1.Click += new System.EventHandler(this.btn1_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Location = new System.Drawing.Point(119, 115);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 2;
-            this.btnAdd.Text = "adicionar";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.nome.Width = 500;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(831, 486);
+            this.Controls.Add(this.lblNome);
+            this.Controls.Add(this.lblRa);
+            this.Controls.Add(this.txtNome);
+            this.Controls.Add(this.txtRa);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.btn1);
-            this.Controls.Add(this.dgvPessoa);
+            this.Controls.Add(this.dgvAluno);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPessoa)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAluno)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgvPessoa;
-        private System.Windows.Forms.DataGridViewTextBoxColumn posicao;
-        private System.Windows.Forms.DataGridViewTextBoxColumn chave;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nome;
-        private System.Windows.Forms.Button btn1;
+        private System.Windows.Forms.DataGridView dgvAluno;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.TextBox txtRa;
+        private System.Windows.Forms.TextBox txtNome;
+        private System.Windows.Forms.Label lblRa;
+        private System.Windows.Forms.Label lblNome;
+        private System.Windows.Forms.DataGridViewTextBoxColumn posicao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ra;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nome;
     }
 }
 

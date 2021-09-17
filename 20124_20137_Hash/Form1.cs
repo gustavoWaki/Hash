@@ -14,34 +14,44 @@ namespace _20124_20137_Hash
     public partial class Form1 : Form
     {
 
-        Pessoa[] vetor = new Pessoa[10];
+        SondagemLinear vetor = new SondagemLinear(10);
         public Form1()
         {
             InitializeComponent();
-            Pessoa gustavo = new Pessoa("20137", "Gustavo");
-            Pessoa artur = new Pessoa("20124", "Artur");
-            vetor[0] = gustavo;
-            vetor[1] = artur;
-            preencherDgv(vetor);
+            vetor.adicionar(new Aluno("20137", "Gustavo"));
+            atualizarDgv();
         }
 
-        private void preencherDgv(Pessoa[] vetor)
+        private void atualizarDgv()
         {
-            dgvPessoa.Rows.Clear();
-            for (int i = 0; i < 2; i++)
+            dgvAluno.Rows.Clear();
+            dgvAluno.RowCount = vetor.getTamanho();
+            for (int i = 0; i < vetor.getTamanho(); i++)
             {
-                dgvPessoa.Rows.Add(i.ToString(), vetor[i].Chave, vetor[i].Nome);
+                if (vetor.getValor(i) != null)
+                {
+                    dgvAluno[0, i].Value = i.ToString();
+                    dgvAluno[1, i].Value = vetor.getValor(i).getRa();
+                    dgvAluno[2, i].Value = vetor.getValor(i).getNome();
+                }
+                else
+                    dgvAluno[0, i].Value = i.ToString();
+
+
+                //dgvAluno.Rows.Add(i.ToString(), vetor.getValor(i).getRa(), vetor.getValor(i).getNome());
             }
         }
 
-        private void btn1_Click(object sender, EventArgs e)
-        {
-            preencherDgv(vetor);
-        }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            vetor[2] = new Pessoa("12345", "Pedro");
+            //int x;
+            /*if (Int32.TryParse(txtRa.Text, out x) && txtNome.Text != "")
+            {
+                vetor.adicionar(new Aluno(txtRa.Text, txtNome.Text));
+            }*/
+            vetor.adicionar(new Aluno(txtRa.Text, txtNome.Text));
+            atualizarDgv();
         }
     }
 }
