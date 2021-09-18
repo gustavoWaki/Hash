@@ -10,21 +10,21 @@ using System.Windows.Forms;
 
 namespace _20124_20137_Hash
 {
-    class SondagemLinear
+    class SondagemQuadratica
     {
         private int tamanho;
         ListaLigada<Aluno> dados;
         public int Tamanho { get => tamanho; }
 
-        public SondagemLinear (int _tamanho)
+        public SondagemQuadratica(int _tamanho)
         {
             tamanho = _tamanho;
             dados = new ListaLigada<Aluno>(tamanho);
         }
 
-        public void adicionar (Aluno aluno)
+        public void adicionar(Aluno aluno)
         {
-            if(aluno == null)
+            if (aluno == null)
             {
                 throw new Exception("Falha ao adicionar");
             }
@@ -33,9 +33,9 @@ namespace _20124_20137_Hash
 
             pos = pos % dados.getTamanho();
 
-            if(dados.getValor(pos) == null)
+            if (dados.getValor(pos) == null)
                 dados.setValor(aluno, pos);
-            else if(dados.getValor(pos).getRa() == aluno.getRa())
+            else if (dados.getValor(pos).getRa() == aluno.getRa())
             {
                 MessageBox.Show("RA já existente. Inclusão não efetuada");
             }
@@ -43,21 +43,22 @@ namespace _20124_20137_Hash
             {
                 Aluno al;
 
-                for(int i = pos + 1; i%dados.getTamanho() != pos; i++)
+                for (int i = 1;; i++)
                 {
-                    al = dados.getValor(i % dados.getTamanho());
+                    al = dados.getValor((pos + i*i) % dados.getTamanho());
                     if (al == null)
                     {
-                        dados.setValor(aluno, i % dados.getTamanho());
+                        dados.setValor(aluno, (pos + i * i) % dados.getTamanho());
                         return;
                     }
                     else if (al.getRa() == aluno.getRa())
                     {
                         MessageBox.Show("RA já existente. Inclusão não efetuada");
+                        return;
                     }
                     
                 }MessageBox.Show("Vetor está cheio. Inclusão não efetuada");
-                
+
             }
         }
 
@@ -100,7 +101,7 @@ namespace _20124_20137_Hash
                 hash = 17 * hash * (char)chave[i];
             }
             int soma = 0;
-            for(int i = 0; i<chave.Length; i++)
+            for (int i = 0; i < chave.Length; i++)
             {
                 soma += int.Parse(chave[i].ToString());
             }
@@ -128,3 +129,4 @@ namespace _20124_20137_Hash
         }
     }
 }
+

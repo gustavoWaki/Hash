@@ -15,6 +15,8 @@ namespace _20124_20137_Hash
     {
 
         SondagemLinear vetor = new SondagemLinear(25);
+        SondagemQuadratica vetor2 = new SondagemQuadratica(25);
+        byte tipo = 1;
         public Form1()
         {
             InitializeComponent();
@@ -23,6 +25,8 @@ namespace _20124_20137_Hash
 
         private void atualizarDgv()
         {
+            if(tipo == 1) 
+            { 
             dgvAluno.Rows.Clear();
             dgvAluno.RowCount = vetor.getTamanho();
             for (int i = 0; i < vetor.getTamanho(); i++)
@@ -37,6 +41,40 @@ namespace _20124_20137_Hash
                     dgvAluno[0, i].Value = i.ToString();
 
             }
+            }
+            else if(tipo == 2){
+                dgvAluno.Rows.Clear();
+                dgvAluno.RowCount = vetor2.getTamanho();
+                for (int i = 0; i < vetor2.getTamanho(); i++)
+                {
+                    if (vetor2.getValor(i) != null)
+                    {
+                        dgvAluno[0, i].Value = i.ToString();
+                        dgvAluno[1, i].Value = vetor2.getValor(i).getRa();
+                        dgvAluno[2, i].Value = vetor2.getValor(i).getNome();
+                    }
+                    else
+                        dgvAluno[0, i].Value = i.ToString();
+
+                }
+            }
+            else if (tipo == 3)
+            {
+                dgvAluno.Rows.Clear();
+                dgvAluno.RowCount = vetor2.getTamanho();
+                for (int i = 0; i < vetor2.getTamanho(); i++)
+                {
+                    if (vetor.getValor(i) != null)
+                    {
+                        dgvAluno[0, i].Value = i.ToString();
+                        dgvAluno[1, i].Value = vetor2.getValor(i).getRa();
+                        dgvAluno[2, i].Value = vetor2.getValor(i).getNome();
+                    }
+                    else
+                        dgvAluno[0, i].Value = i.ToString();
+
+                }
+            }
         }
 
 
@@ -45,7 +83,10 @@ namespace _20124_20137_Hash
             int x;
             if (Int32.TryParse(txtRa.Text, out x) && txtNome.Text != "")
             {
+                if(tipo == 1)
                 vetor.adicionar(new Aluno(txtRa.Text, txtNome.Text));
+                else if(tipo ==2)
+                    vetor2.adicionar(new Aluno(txtRa.Text, txtNome.Text));
             }
             else MessageBox.Show("RA inválido. Inclusão não efetuada");
             atualizarDgv();
@@ -59,6 +100,24 @@ namespace _20124_20137_Hash
                 vetor.deletar(new Aluno(txtRa.Text, txtNome.Text));
             }
             else MessageBox.Show("RA inválido. Deleção não efetuada");
+            atualizarDgv();
+        }
+
+        private void rbLin_CheckedChanged(object sender, EventArgs e)
+        {
+            tipo = 1;
+            atualizarDgv();
+        }
+
+        private void rbQuad_CheckedChanged(object sender, EventArgs e)
+        {
+            tipo = 2;
+            atualizarDgv();
+        }
+
+        private void rbDuplo_CheckedChanged(object sender, EventArgs e)
+        {
+            tipo = 3;
             atualizarDgv();
         }
     }
