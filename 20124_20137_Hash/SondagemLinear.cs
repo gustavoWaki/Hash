@@ -1,7 +1,12 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace _20124_20137_Hash
 {
@@ -24,31 +29,21 @@ namespace _20124_20137_Hash
                 throw new Exception("Falha ao adicionar");
             }
 
-            int hash = 1;
-            for(int i = 0; i < aluno.getRa().Length; i++)
+            int pos = Hash(aluno.getRa());
+
+            pos = pos % dados.getTamanho();
+
+            if(dados.getValor(pos) == null)
+                dados.setValor(aluno, pos);
+            else if(dados.getValor(pos).getRa() == aluno.getRa())
             {
-                hash = 17 * hash * (char)aluno.getRa()[i];
+                MessageBox.Show("RA já existente. Inclusão não efetuada");
             }
-            hash *= aluno.getRa().Length * 31;
-
-            for (int i = 0; i < aluno.getNome().Length; i++)
-            {
-                hash = 19 * hash * (char)aluno.getNome()[i];
-            }
-            hash *= aluno.getNome().Length * 13;
-
-            if (hash < 0)
-                hash *= -1;
-
-            hash = hash % dados.getTamanho();
-
-            if(dados.getValor(hash) == null)
-                dados.setValor(aluno, hash);
             else
             {
                 Aluno al;
 
-                for(int i = hash+1; i%dados.getTamanho() != hash; i++)
+                for(int i = pos + 1; i%dados.getTamanho() != pos; i++)
                 {
                     al = dados.getValor(i % dados.getTamanho());
                     if (al == null)
@@ -56,9 +51,65 @@ namespace _20124_20137_Hash
                         dados.setValor(aluno, i % dados.getTamanho());
                         return;
                     }
+                    else if (al.getRa() == aluno.getRa())
+                    {
+                        MessageBox.Show("RA já existente. Inclusão não efetuada");
+                    }
+                    MessageBox.Show("Vetor está cheio. Inclusão não efetuada");
                 }
                 
             }
+        }
+
+        public void deletar(Aluno aluno)
+        {
+            if (aluno == null)
+            {
+                throw new Exception("Falha ao deletar");
+            }
+
+            int pos = Hash(aluno.getRa());
+
+            pos = pos % dados.getTamanho();
+
+            if (dados.getValor(pos).getRa() == aluno.getRa())
+                dados.deletar(null, pos);
+            else
+            {
+                Aluno al;
+
+                for (int i = pos + 1; i % dados.getTamanho() != pos; i++)
+                {
+                    al = dados.getValor(i % dados.getTamanho());
+                    if (al.getRa() == aluno.getRa())
+                    {
+                        dados.deletar(null, i % dados.getTamanho());
+                        return;
+                    }
+                }
+                MessageBox.Show("RA não encontrado. Deleção não efetuada.");
+
+            }
+        }
+
+        public int Hash(string chave)
+        {
+            int hash = 1;
+            for (int i = 0; i < chave.Length; i++)
+            {
+                hash = 17 * hash * (char)chave[i];
+            }
+            int soma = 0;
+            for(int i = 0; i<chave.Length; i++)
+            {
+                soma += int.Parse(chave[i].ToString());
+            }
+            hash *= 11 * soma;
+
+            if (hash < 0)
+                hash = -hash;
+
+            return hash;
         }
 
         public int getLength()

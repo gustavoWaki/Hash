@@ -14,11 +14,10 @@ namespace _20124_20137_Hash
     public partial class Form1 : Form
     {
 
-        SondagemLinear vetor = new SondagemLinear(10);
+        SondagemLinear vetor = new SondagemLinear(25);
         public Form1()
         {
             InitializeComponent();
-            vetor.adicionar(new Aluno("20137", "Gustavo"));
             atualizarDgv();
         }
 
@@ -37,20 +36,29 @@ namespace _20124_20137_Hash
                 else
                     dgvAluno[0, i].Value = i.ToString();
 
-
-                //dgvAluno.Rows.Add(i.ToString(), vetor.getValor(i).getRa(), vetor.getValor(i).getNome());
             }
         }
 
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            //int x;
-            /*if (Int32.TryParse(txtRa.Text, out x) && txtNome.Text != "")
+            int x;
+            if (Int32.TryParse(txtRa.Text, out x) && txtNome.Text != "")
             {
                 vetor.adicionar(new Aluno(txtRa.Text, txtNome.Text));
-            }*/
-            vetor.adicionar(new Aluno(txtRa.Text, txtNome.Text));
+            }
+            else MessageBox.Show("RA inválido. Inclusão não efetuada");
+            atualizarDgv();
+        }
+
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            int x;
+            if (Int32.TryParse(txtRa.Text, out x) && txtNome.Text != "")
+            {
+                vetor.deletar(new Aluno(txtRa.Text, txtNome.Text));
+            }
+            else MessageBox.Show("RA inválido. Deleção não efetuada");
             atualizarDgv();
         }
     }

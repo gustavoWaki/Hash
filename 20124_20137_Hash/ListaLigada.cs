@@ -78,6 +78,12 @@ namespace _20124_20137_Hash
             quantos++;
         }
 
+        public void deletar(X dado, int pos)
+        {
+            lista[pos].setDados(dado);
+            quantos--;
+        }
+
         public X getValor(int pos)
         {
             return lista[pos].getDados();

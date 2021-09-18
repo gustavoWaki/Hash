@@ -30,14 +30,15 @@ namespace _20124_20137_Hash
         private void InitializeComponent()
         {
             this.dgvAluno = new System.Windows.Forms.DataGridView();
+            this.posicao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAdd = new System.Windows.Forms.Button();
             this.txtRa = new System.Windows.Forms.TextBox();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.lblRa = new System.Windows.Forms.Label();
             this.lblNome = new System.Windows.Forms.Label();
-            this.posicao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnDel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAluno)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,6 +54,26 @@ namespace _20124_20137_Hash
             this.dgvAluno.RowTemplate.Height = 25;
             this.dgvAluno.Size = new System.Drawing.Size(807, 317);
             this.dgvAluno.TabIndex = 0;
+            // 
+            // posicao
+            // 
+            this.posicao.HeaderText = "Posição";
+            this.posicao.Name = "posicao";
+            this.posicao.ReadOnly = true;
+            // 
+            // ra
+            // 
+            this.ra.HeaderText = "RA";
+            this.ra.MaxInputLength = 5;
+            this.ra.Name = "ra";
+            this.ra.ReadOnly = true;
+            // 
+            // nome
+            // 
+            this.nome.HeaderText = "Nome";
+            this.nome.Name = "nome";
+            this.nome.ReadOnly = true;
+            this.nome.Width = 500;
             // 
             // btnAdd
             // 
@@ -99,31 +120,22 @@ namespace _20124_20137_Hash
             this.lblNome.TabIndex = 6;
             this.lblNome.Text = "Nome:";
             // 
-            // posicao
+            // btnDel
             // 
-            this.posicao.HeaderText = "Posição";
-            this.posicao.Name = "posicao";
-            this.posicao.ReadOnly = true;
-            // 
-            // ra
-            // 
-            this.ra.HeaderText = "RA";
-            this.ra.MaxInputLength = 5;
-            this.ra.Name = "ra";
-            this.ra.ReadOnly = true;
-            // 
-            // nome
-            // 
-            this.nome.HeaderText = "Nome";
-            this.nome.Name = "nome";
-            this.nome.ReadOnly = true;
-            this.nome.Width = 500;
+            this.btnDel.Location = new System.Drawing.Point(592, 36);
+            this.btnDel.Name = "btnDel";
+            this.btnDel.Size = new System.Drawing.Size(94, 29);
+            this.btnDel.TabIndex = 7;
+            this.btnDel.Text = "Deletar";
+            this.btnDel.UseVisualStyleBackColor = true;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(831, 486);
+            this.Controls.Add(this.btnDel);
             this.Controls.Add(this.lblNome);
             this.Controls.Add(this.lblRa);
             this.Controls.Add(this.txtNome);
@@ -149,6 +161,7 @@ namespace _20124_20137_Hash
         private System.Windows.Forms.DataGridViewTextBoxColumn posicao;
         private System.Windows.Forms.DataGridViewTextBoxColumn ra;
         private System.Windows.Forms.DataGridViewTextBoxColumn nome;
+        private System.Windows.Forms.Button btnDel;
     }
 }
 
