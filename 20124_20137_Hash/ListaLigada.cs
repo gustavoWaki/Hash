@@ -104,5 +104,14 @@ namespace _20124_20137_Hash
             return quantos;
         }
 
+        public bool isCheio()
+        {
+            if (quantos < tamanho)
+            {
+                return false;
+            }
+            return true;
+        }
+
     }
 }

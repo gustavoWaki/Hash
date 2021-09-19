@@ -14,8 +14,8 @@ namespace _20124_20137_Hash
     public partial class Form1 : Form
     {
 
-        SondagemLinear vetor = new SondagemLinear(25);
-        SondagemQuadratica vetor2 = new SondagemQuadratica(25);
+        SondagemLinear vetor = new SondagemLinear(29);
+        SondagemQuadratica vetor2 = new SondagemQuadratica(29);
         byte tipo = 1;
         public Form1()
         {
@@ -97,7 +97,10 @@ namespace _20124_20137_Hash
             int x;
             if (Int32.TryParse(txtRa.Text, out x) && txtNome.Text != "")
             {
-                vetor.deletar(new Aluno(txtRa.Text, txtNome.Text));
+                if (tipo == 1)
+                    vetor.deletar(new Aluno(txtRa.Text, txtNome.Text));
+                else if (tipo == 2)
+                    vetor2.deletar(new Aluno(txtRa.Text, txtNome.Text));
             }
             else MessageBox.Show("RA inválido. Deleção não efetuada");
             atualizarDgv();

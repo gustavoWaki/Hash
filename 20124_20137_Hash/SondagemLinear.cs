@@ -29,6 +29,13 @@ namespace _20124_20137_Hash
                 throw new Exception("Falha ao adicionar");
             }
 
+            if (dados.isCheio())
+            {
+                MessageBox.Show("Vetor está cheio. Inclusão não efetuada");
+                return;
+            }
+                
+
             int pos = Hash(aluno.getRa());
 
             pos = pos % dados.getTamanho();
@@ -66,6 +73,12 @@ namespace _20124_20137_Hash
             if (aluno == null)
             {
                 throw new Exception("Falha ao deletar");
+            }
+
+            if (dados.getLength() == 0)
+            {
+                MessageBox.Show("Vetor está vazio. Deleção não efetuada");
+                return;
             }
 
             int pos = Hash(aluno.getRa());

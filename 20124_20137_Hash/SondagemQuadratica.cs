@@ -28,6 +28,11 @@ namespace _20124_20137_Hash
             {
                 throw new Exception("Falha ao adicionar");
             }
+            if (dados.isCheio())
+            {
+                MessageBox.Show("Vetor está cheio. Inclusão não efetuada");
+                return;
+            }
 
             int pos = Hash(aluno.getRa());
 
@@ -43,7 +48,7 @@ namespace _20124_20137_Hash
             {
                 Aluno al;
 
-                for (int i = 1;; i++)
+                for (int i = 1; i < 1111; i++)
                 {
                     al = dados.getValor((pos + i*i) % dados.getTamanho());
                     if (al == null)
@@ -57,7 +62,7 @@ namespace _20124_20137_Hash
                         return;
                     }
                     
-                }MessageBox.Show("Vetor está cheio. Inclusão não efetuada");
+                }MessageBox.Show("Posição livre não encontrada. Inclusão não efetuada");
 
             }
         }
@@ -67,6 +72,12 @@ namespace _20124_20137_Hash
             if (aluno == null)
             {
                 throw new Exception("Falha ao deletar");
+            }
+
+            if (dados.getLength() == 0)
+            {
+                MessageBox.Show("Vetor está vazio. Deleção não efetuada");
+                return;
             }
 
             int pos = Hash(aluno.getRa());
@@ -79,18 +90,21 @@ namespace _20124_20137_Hash
             {
                 Aluno al;
 
-                for (int i = pos + 1; i % dados.getTamanho() != pos; i++)
+                for (int i = 1; i<1111; i++)
                 {
-                    al = dados.getValor(i % dados.getTamanho());
-                    if (al.getRa() == aluno.getRa())
+                    al = dados.getValor((pos + i * i) % dados.getTamanho());
+                    if (al == null)
+                        continue;
+                    if (dados.getValor((pos + i * i) % dados.getTamanho()).getRa() == aluno.getRa())
                     {
-                        dados.deletar(null, i % dados.getTamanho());
+                        dados.deletar(null, (pos + i * i) % dados.getTamanho());
                         return;
                     }
+
                 }
                 MessageBox.Show("RA não encontrado. Deleção não efetuada.");
 
-            }
+  0          }
         }
 
         public int Hash(string chave)
