@@ -16,6 +16,7 @@ namespace _20124_20137_Hash
 
         SondagemLinear vetor = new SondagemLinear(29);
         SondagemQuadratica vetor2 = new SondagemQuadratica(29);
+        HashingDuplo vetor3 = new HashingDuplo(29);
         byte tipo = 1;
         public Form1()
         {
@@ -61,14 +62,14 @@ namespace _20124_20137_Hash
             else if (tipo == 3)
             {
                 dgvAluno.Rows.Clear();
-                dgvAluno.RowCount = vetor2.getTamanho();
-                for (int i = 0; i < vetor2.getTamanho(); i++)
+                dgvAluno.RowCount = vetor3.getTamanho();
+                for (int i = 0; i < vetor3.getTamanho(); i++)
                 {
-                    if (vetor.getValor(i) != null)
+                    if (vetor3.getValor(i) != null)
                     {
                         dgvAluno[0, i].Value = i.ToString();
-                        dgvAluno[1, i].Value = vetor2.getValor(i).getRa();
-                        dgvAluno[2, i].Value = vetor2.getValor(i).getNome();
+                        dgvAluno[1, i].Value = vetor3.getValor(i).getRa();
+                        dgvAluno[2, i].Value = vetor3.getValor(i).getNome();
                     }
                     else
                         dgvAluno[0, i].Value = i.ToString();
@@ -87,6 +88,8 @@ namespace _20124_20137_Hash
                 vetor.adicionar(new Aluno(txtRa.Text, txtNome.Text));
                 else if(tipo ==2)
                     vetor2.adicionar(new Aluno(txtRa.Text, txtNome.Text));
+                else if (tipo == 3)
+                    vetor3.adicionar(new Aluno(txtRa.Text, txtNome.Text));
             }
             else MessageBox.Show("RA inválido. Inclusão não efetuada");
             atualizarDgv();
@@ -101,6 +104,8 @@ namespace _20124_20137_Hash
                     vetor.deletar(new Aluno(txtRa.Text, txtNome.Text));
                 else if (tipo == 2)
                     vetor2.deletar(new Aluno(txtRa.Text, txtNome.Text));
+                else if(tipo == 3)
+                    vetor3.deletar(new Aluno(txtRa.Text, txtNome.Text));
             }
             else MessageBox.Show("RA inválido. Deleção não efetuada");
             atualizarDgv();

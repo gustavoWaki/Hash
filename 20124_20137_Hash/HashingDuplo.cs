@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace _20124_20137_Hash
 {
-    class SondagemQuadratica
+    class HashingDuplo
     {
         private int tamanho;
         ListaLigada<Aluno> dados;
         public int Tamanho { get => tamanho; }
 
-        public SondagemQuadratica(int _tamanho)
+        public HashingDuplo(int _tamanho)
         {
             tamanho = _tamanho;
-            dados = new ListaLigada<Aluno>(tamanho);
+            dados = new ListaLigada<Aluno>(tamanho); 
         }
 
         public void adicionar(Aluno aluno)
@@ -28,11 +28,13 @@ namespace _20124_20137_Hash
             {
                 throw new Exception("Falha ao adicionar");
             }
+
             if (dados.isCheio())
             {
                 MessageBox.Show("Vetor está cheio. Inclusão não efetuada");
                 return;
             }
+
 
             int pos = Hash(aluno.getRa());
 
@@ -47,22 +49,23 @@ namespace _20124_20137_Hash
             else
             {
                 Aluno al;
+                int i = Hash2(aluno.getRa());
 
-                for (int i = 1; i < 1111; i++)
+                for (int j = pos + i; j % dados.getTamanho() != pos; j+=i)
                 {
-                    al = dados.getValor((pos + i*i) % dados.getTamanho());
+                    al = dados.getValor(j % dados.getTamanho());
                     if (al == null)
                     {
-                        dados.setValor(aluno, (pos + i * i) % dados.getTamanho());
+                        dados.setValor(aluno, j % dados.getTamanho());
                         return;
                     }
                     else if (al.getRa() == aluno.getRa())
                     {
                         MessageBox.Show("RA já existente. Inclusão não efetuada");
-                        return;
                     }
-                    
-                }MessageBox.Show("Posição livre não encontrada. Inclusão não efetuada");
+
+                }
+                MessageBox.Show("Vetor está cheio. Inclusão não efetuada");
 
             }
         }
@@ -89,15 +92,13 @@ namespace _20124_20137_Hash
             else
             {
                 Aluno al;
-
-                for (int i = 1; i<1111; i++)
+                int i = Hash2(aluno.getRa());
+                for (int j = pos + i; j % dados.getTamanho() != pos; j += i)
                 {
-                    al = dados.getValor((pos + i * i) % dados.getTamanho());
-                    if (al == null)
-                        continue;
-                    if (dados.getValor((pos + i * i) % dados.getTamanho()).getRa() == aluno.getRa())
+                    al = dados.getValor(j % dados.getTamanho());
+                    if (al.getRa() == aluno.getRa())
                     {
-                        dados.deletar(null, (pos + i * i) % dados.getTamanho());
+                        dados.deletar(null, j % dados.getTamanho());
                         return;
                     }
 
@@ -127,6 +128,13 @@ namespace _20124_20137_Hash
             return hash;
         }
 
+        public int Hash2(string chave)
+        {
+            int hash = Hash(chave);
+            hash = 13 - (hash % 13);
+            return hash;
+        }
+
         public int getLength()
         {
             return dados.getLength();
@@ -143,4 +151,3 @@ namespace _20124_20137_Hash
         }
     }
 }
-
