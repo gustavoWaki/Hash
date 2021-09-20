@@ -87,6 +87,12 @@ namespace _20124_20137_Hash
 
             pos = pos % dados.getTamanho();
 
+            if (dados.getValor(pos) == null)
+            {
+                MessageBox.Show("RA não encontrado. Deleção não efetuada.");
+                return;
+            }
+
             if (dados.getValor(pos).getRa() == aluno.getRa())
                 dados.deletar(null, pos);
             else
@@ -96,6 +102,10 @@ namespace _20124_20137_Hash
                 for (int j = pos + i; j % dados.getTamanho() != pos; j += i)
                 {
                     al = dados.getValor(j % dados.getTamanho());
+                    if(al == null)
+                    {
+                        continue;
+                    }
                     if (al.getRa() == aluno.getRa())
                     {
                         dados.deletar(null, j % dados.getTamanho());
